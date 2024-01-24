@@ -1,0 +1,176 @@
+\documentclass[slides]{pgnotes}
+
+\title{Tools for software development\\Module introduction}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Aims}
+
+\begin{itemize}
+  \item This module introduces students to modern development tools, environments and processes.
+  \item The industry is evolving rapidly and so are the tools.
+  \item Understanding how to use these tools requires more knowledge and skills than just development, mathematics or theory.
+\end{itemize}
+
+\subsection{Changing environment}
+
+Some of the drivers for these changes are:
+
+\begin{itemize}
+\item Complex systems with large data requirements are increasingly run on multiple computers so they can complete tasks quickly.
+\item Companies are increasingly responsible for running software platforms for their clients and so have become far more focused on operating quality.
+\item In order to have many teams work on larger systems, many companies are moving to platforms that distribute system functionality across different computers. 
+\end{itemize}
+
+\section{Challenges of Data Science Computing}
+
+\subsection{Complexity}
+
+\begin{itemize}
+\item Data Science Applications can be complex and required to process very large quantities of data.
+\item Algorithms can be mathematical and processor intensive.
+\item Some datasets we wish to analyze can be very large and require a lot of resources (disk, memory, processing).
+\item In modern environments we address these challenges by creating environments where we can run code on multiple computers at the same time (in parallel).
+\end{itemize}
+
+\subsection{Consistent environment}
+
+\begin{itemize}
+\item Complex programs uses many libraries and interacts with 3rd party software (like databases).
+\item A challenge of all areas of computing is ensuring that environments are consistent.
+\item It is difficult to ensure the environment where software is developed and tested is the same as the environment it runs in production:
+  \begin{itemize}
+  \item Libraries can be different versions
+  \item 3rd party software can be different versions
+  \item Operating system can be different versions
+  \item Different hardware environments
+  \end{itemize}
+\item \textbf{``It works on my laptop!'' is no excuse!}
+\end{itemize}
+
+\subsection{Working in teams}
+
+How do does a team:
+\begin{enumerate}
+\item Edit the same files while tracking changes
+\item Show ownership / responsibility for code
+\item Collaborate in on-site, fully remote and hybrid work environments
+\item Automate routine tasks (like flagging code updates in MS Teams / Slack)
+\item Centrally build, test and deploy code to production environment  
+\end{enumerate}
+
+\section{Key themes}
+
+\subsection{Source control}
+
+\begin{itemize}
+\item Need to track revisions to files (primarily text-based).
+\item Need ability to snapshot changes, or roll back.
+\item Maintain a log of changes.
+\item Show changes with each version.
+\item Distributed source control:
+  \begin{itemize}
+  \item Developer(s) want to work on different systems.
+  \item Permit collaboration by sharing changes amongst developers in a team.
+  \end{itemize}
+\item \textbf{We will use git in conjunction with GitLab for source control.}
+\end{itemize}
+
+\subsection{Automation}
+
+\begin{itemize}
+\item Your own \textbf{time is valuable}!
+\item Don't waste it on tasks, processes that take longer than they should. 
+\item Routine tasks should be automated to save time, improve consistency.
+\item Familiarity with command-line environments required:
+  \begin{itemize}
+  \item Windows --- PowerShell
+  \item Mac / Linux --- Bash, zsh
+  \item Cross platform --- Python (re-use your programming knowledge!)
+  \end{itemize}
+  \textit{They may appear scary but are likely to be your most useful tool!}
+\item \textbf{We will use some PowerShell and Bash to automate tasks.}
+\end{itemize}
+
+
+\subsection{Continuous integration}
+
+\begin{enumerate}
+\item Over the years the speed of releasing software has become more important (referred to as Velocity).
+\item Businesses need software faster so they can be more competitive and not have business strategy held back by IT.
+\item Businesses have also become far more dependent on software to run day to day business (Digital Transformation).  Any outages can have serious impact to business operation.
+\item \textbf{Continuous integration:}
+  \begin{itemize}
+  \item automatically build, test and deploy code
+  \item automatically run analysis, generating result artifacts
+  \end{itemize}
+\end{enumerate}
+
+
+\subsection{Containers}
+
+\begin{itemize}
+\item By building all dependencies into a container, they can be run anywhere and will perform very consistently.
+\item Multiple containers can be put onto their own private network so they can talk to each other.
+\item This allows for micro service based systems to be built.
+\item The most common container technology is called Docker.
+\item \textbf{Docker} predominantly uses Linux Operating System.
+\end{itemize}
+
+\section{Assessment}
+
+\vspace{\fill}
+
+\begin{table}[hb]
+  \caption{Assessment breakdown}
+  \label{tab:assessment-breakdown}
+  \begin{tabularx}{1.0\linewidth}{X r}
+    \toprule
+    \textbf{Component} & \textbf{Marks} \\
+    \midrule
+    Weekly lab exercises & 40 \\
+    End-of-module project & 40 \\
+    Class test & 20 \\
+    \midrule
+    \textbf{Total CA} & 100 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\vspace{\fill}
+
+
+\subsection{Weekly lab work}
+
+\begin{itemize}
+
+\item
+  You will be required to do some tasks each week during class in the lab.
+
+\item
+  You will use a source-control system (\texttt{git}) to keep these in a repository (on GitLab) which the lecturer will have access to.
+  
+\item
+  You will be graded for completing the lab tasks throughout the semester. 
+
+\item
+  You can (and should!) help each other with lab work.
+
+\item 
+  \textbf{Your submitted work must be entirely your own}
+  
+\item
+  If you miss a week, you should catch up as best you can.
+
+\item
+  Follow repository, folder naming and formatting requirements.\\
+  If you don't you won't get any marks... Will be strict on this!
+  
+\end{itemize}
+
+\end{document}
+
