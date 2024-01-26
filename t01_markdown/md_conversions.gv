@@ -1,0 +1,24 @@
+digraph G {
+	rankdir=LR;
+
+	node [shape="tab", style="filled", fillcolor="lightgreen"];
+	MD [label="Markdown", fillcolor="lightblue"];
+	HTML;
+	DOCX;
+	LaTeX;
+	PDF;
+	node [shape="cds",style="filled", fillcolor="lightyellow"];
+	MDpl [label="Markdown.pl (old)"];
+	PD [label="pandoc (current)"];
+	PDFLATEX [label="pdflatex"];	
+
+	
+	MD -> MDpl;
+	MDpl -> HTML;
+	MD -> PD;
+	PD -> HTML;
+	PD -> DOCX;
+	PD -> LaTeX;
+	LaTeX -> PDFLATEX;
+	PDFLATEX -> PDF;
+}
