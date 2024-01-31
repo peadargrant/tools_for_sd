@@ -1,0 +1,160 @@
+\documentclass[slides]{pgnotes}
+
+\title{Source control}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Motivation}
+
+Have you ever:
+\begin{description}
+\item[Broke something] that was working and been unsure how to fix it?
+\item[Needed to see] differences compared to a previously working version? 
+\item[Wanted the history] of how code / data got to its current state?
+\item[Needed to show] evolutionary progress of work for academic integrity reasons.
+\item[Hoarded files] in a uncontrollable sprawl? 
+\end{description}
+
+\autoimage{final_doc}{Versioning without source control}{versioning-without-source-control}
+
+\section{Source control}
+
+\begin{itemize}
+\item Source Control Systems keep all files in a Code 'Repository'.
+\item A code repository is a file system that stores all the files.
+  \begin{itemize}
+  \item Adds a time dimension to the file system.
+  \end{itemize}
+\item Atomic snapshots called ``commits''.
+\item The repository stores every committed version of each file.
+\item Can show differences from, or revert to, previous versions.
+\item Version history is tracked with explanatory messages.
+\item Later on (very soon!) can work with remote repositories.
+\end{itemize}
+
+
+\subsection{Available systems}
+
+\begin{itemize}
+\item Source control systems have been around for many years.
+\item Historically: RCS, CVS
+\item Still used: SVN, others...
+\item Git is by far the most commonly used tool.
+\end{itemize}
+
+\section{Git}
+
+\begin{center}
+  \includegraphics[width=0.2\linewidth]{git_logo}
+\end{center}
+
+From the git website:
+\begin{quote}
+  Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+Git is easy to learn and has a tiny footprint with lightning fast performance. It outclasses SCM tools like Subversion, CVS, Perforce, and ClearCase with features like cheap local branching, convenient staging areas, and multiple workflows.
+\end{quote}
+
+
+\subsection{Starting off}
+
+\begin{itemize}
+\item Git works at a per-project level
+\item Primarily used via Command line
+  \begin{itemize}
+  \item Support built into many IDEs and other tooling however!
+  \end{itemize}
+\item Use \texttt{git init .} in a folder to start tracking it
+  \begin{itemize}
+  \item Includes subfolders as well
+  \item Creates a \texttt{.git} folder where history is stored
+  \end{itemize}
+\item Git creates a \texttt{main} or \texttt{master} \textit{branch} by default. 
+\end{itemize}
+
+
+
+
+\subsection{Recording changes}
+
+\begin{itemize}
+\item Use \texttt{git status} to show the project status at any time
+  \begin{itemize}
+  \item Use it liberally as you try out git!
+  \item File paths relative to current working directory
+  \end{itemize}
+\item Untracked files have no history in git (yet)
+\item Use \texttt{git add filename.txt} to track file
+  \begin{itemize}
+  \item Not committed yet, instead in \textbf{staging area}.
+  \end{itemize}
+\item Use \texttt{git commit -m "message"} to \textbf{commit} changes.
+\end{itemize}
+
+\autoimage{git_file_lifecycle}{File lifecycle}{git-file-lifecycle}
+
+\autoimage{git_staging_area}{Git Staging Area (swcarpentry)}{git-staging-area}
+
+\subsection{Showing differences}
+
+\begin{itemize}
+\item \texttt{git diff filename.txt} will show changes to file since last committed.
+\end{itemize}
+
+\subsection{File moving and deletion}
+
+\begin{itemize}
+\item Git tracks removal of files using \texttt{git rm}.
+  \begin{itemize}
+  \item Will remove the file on the filesystem
+  \item Will also record the change in the next commit
+  \end{itemize}
+\item Similarly can move or rename using \texttt{git mv}.
+\item Copying a file is different:
+  \begin{itemize}
+  \item Use \texttt{cp} as normal to copy the file, then
+  \item \texttt{git add} to track it
+  \end{itemize}
+\end{itemize}
+
+\subsection{History}
+
+\begin{itemize}
+\item \texttt{git log} will show history.
+\item The most recent commit is known as the \texttt{HEAD}.
+  \begin{itemize}
+  \item Previous commit is \texttt{HEAD\texttildelow 1}.
+  \item Similarly \texttt{HEAD\texttildelow 2, HEAD\texttildelow 3} etc. 
+  \end{itemize}
+\item Can revert using \texttt{git checkout commitid}
+  \begin{itemize}
+  \item Be careful making changes from this state!
+  \end{itemize}
+\item Can recover individual file using \texttt{git checkout commitid filename.txt}
+  \begin{itemize}
+  \item This will just appear as a modified file in \texttt{git status}
+  \end{itemize}
+\end{itemize}
+
+\section{Ignoring files}
+
+\begin{itemize}
+\item Source control systems primarily manage text files
+\item Some things don't (generally) belong in source control:
+  \begin{description}
+  \item[Large binary files] like Word documents, Image files, videos etc.
+  \item[Generated output] files, since we can re-generate them from source.
+  \end{description}
+\item Use \texttt{.gitignore} to ignore certain file types
+  \begin{itemize}
+  \item Normally in top folder of the project
+  \item Can use \texttt{*} wildcards, e.g. \texttt{*.pdf}.
+  \end{itemize}
+\end{itemize}
+
+\end{document}
+
