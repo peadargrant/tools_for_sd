@@ -34,6 +34,6 @@ if ( $problems ) {
     Write-Host 'fix reported issues and re-run script again to check' -BackgroundColor Red -ForegroundColor White
 }
 else {
-    Write-Host 'your system looks OK for this module' -BackgroundColor Green -ForegroundColor White
+    Write-Host 'your system looks OK for this module' -BackgroundColor DarkGreen -ForegroundColor White
 }
 
