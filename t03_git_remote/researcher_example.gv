@@ -1,0 +1,25 @@
+digraph G {
+
+subgraph cluster_home {
+	label="Home";
+	homepc [shape="cylinder", label="Home PC", style="filled", fillcolor="lightgreen"];
+}
+subgraph cluster_office {
+	label="Office";
+	labpc [shape="cylinder", label="Office PC", style="filled", fillcolor="lightgreen"];
+	laptop [shape="cylinder", label="Laptop PC", style="filled", fillcolor="lightgreen"];	
+}
+subgraph cluster_dc {
+	label="Data centre";
+gitlab [shape="cylinder", label="GitLab", style="filled", fillcolor="lightblue"];
+server1 [shape="cylinder", label="server1", style="filled", fillcolor="lightgreen"];
+server2 [shape="cylinder", label="server2", style="filled", fillcolor="lightgreen"];
+}
+
+homepc -> gitlab;
+labpc -> gitlab;
+laptop -> gitlab;
+server1 -> gitlab;
+server2 -> gitlab;
+
+}

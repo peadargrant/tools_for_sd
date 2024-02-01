@@ -1,0 +1,117 @@
+\documentclass[slides]{pgnotes}
+
+\title{Git remote usage}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Use cases}
+
+\begin{enumerate}
+\item \textbf{As a single developer:}
+  \begin{itemize}
+  \item Code on multiple machines
+  \item Deploy to server(s) or other production environment
+  \item Use as input to Continuous Integration (later!)
+  \end{itemize}
+\item \textbf{Working with others:}
+  \begin{itemize}
+  \item Easily and systematically share code amongst team members
+  \item Accomodates on-site, hybrid, fully remote, disconnected work patterns
+  \item Attribution of code changes
+  \item Controlled pull and push of changes amongst members
+  \end{itemize}
+\end{enumerate}
+
+\autoimage{researcher_example}{Researcher using git across multiple machines}{researcher-example}
+
+\autoimage{team_usage}{Team Git usage}{team-usage}
+
+\section{Remotes}
+
+\begin{enumerate}
+\item Technically any git repository can function as a remote.
+\item Git can use a number of different protocols to share commits among repositories.
+\item Most people nowadays use remotes provided by dedicated services (e.g. GitHub, GitLab)
+  \begin{itemize}
+  \item Web interface for viewing code.    
+  \item Access control for multiple developers
+  \item Value-added features like Continuous Integration
+  \item Integration point for new AI features (e.g. CoPilot)
+  \item Easy ``plug-in'' of other tools (e.g. IRC, Slack)
+  \end{itemize}
+\end{enumerate}
+
+\newpage
+\section{Starting out}
+Most common scenarios:
+\begin{hlbox}{Remote repository already has code (easiest)}
+  \begin{enumerate}
+  \item Use \texttt{git clone} to get \textit{working copy} of remote.
+  \end{enumerate}
+\end{hlbox}
+\begin{hlbox}{Remote repository is empty (harder)}
+  \begin{enumerate}
+  \item Add a \textit{remote} using \texttt{git remote add}
+  \item Upload using \texttt{git push -u}
+  \end{enumerate}
+\end{hlbox}
+
+\section{Workflow}
+\begin{enumerate}
+\item \textbf{Before starting work} you \texttt{pull} changes in.
+\item Use normal \texttt{add}, \texttt{commit} commands.
+\item \textbf{When finished} you \texttt{push} commits to remote.
+\end{enumerate}
+
+\section{Good commits}
+
+Commits should be:
+
+\begin{enumerate}
+
+\item \textbf{Specific:} don't bundle a load of unrelated changes into a single commit.
+  \begin{itemize}
+  \item There is no penalty for more commits vs larger commits!
+  \end{itemize}
+
+\item \textbf{Tested:} don't commit code that you haven't tested.
+  \begin{itemize}
+  \item In some very limited circumstances there may be justifications for doing this.
+  \item Some tools later on may help (e.g. branching)
+  \end{itemize}
+
+\item \textbf{Complete:} make sure \textit{all} files relevant are added:
+  \begin{itemize}
+  \item Particularly important when adding new file(s)
+  \end{itemize}
+  
+\end{enumerate}
+
+\subsection{Good commit messages}
+
+Commit messages should:
+\begin{enumerate}
+
+\item
+  \textbf{Explain what} is being changed on a high-level.
+
+\item
+  \textbf{Explain why} something was done if necessary.
+
+\item
+  Clarify whether it is a \textbf{fix or a new feature}.
+  
+\item
+  \textbf{Not re-state code changes} which we can see from \texttt{git diff}. 
+
+\item
+  Explain why a particular course of action was taken, particularly if the changes aren't obvious.
+  
+\end{enumerate}
+
+\end{document}
+

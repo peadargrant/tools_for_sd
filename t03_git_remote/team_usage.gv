@@ -1,0 +1,24 @@
+digraph G {
+
+subgraph cluster_developers {
+	label="Developers";
+	alicepc [shape="cylinder", label="Alice PC", style="filled", fillcolor="lightblue"];
+	bobpc [shape="cylinder", label="Bob PC", style="filled", fillcolor="lightblue"];	
+}
+subgraph cluster_dc {
+	label="Data centre";
+	server1 [shape="cylinder", label="Dev server", style="filled", fillcolor="lightyellow"];
+	server2 [shape="cylinder", label="Test server", style="filled", fillcolor="lightyellow"];
+	server3 [shape="cylinder", label="Production server", style="filled", fillcolor="lightgreen"];	
+}
+subgraph cluster_cloud {
+	label="Cloud"
+	github [shape="cylinder", label="GitHub", style="filled", fillcolor="lightpink"];	
+	}
+
+alicepc -> github;
+bobpc -> github;
+server1 -> github;
+server2 -> github;
+server3 -> github;
+}
