@@ -1,0 +1,28 @@
+digraph G {
+
+	subgraph cluster_client {
+		 label="Client Host (e.g. laptop / desktop)";
+		 SSHClient [label="SSH client (e.g. ssh, PuTTY)", shape=cylinder, style=filled];
+		 subgraph cluster_keypair {
+		 label="Key pair";
+		 PrivateKey [label="Private key", shape=tab, style=filled, fillcolor=lightpink];
+		 ClientPublicKey [label="Public key", shape=tab, style=filled, fillcolor=palegreen];
+		 }
+		 KeyGen [label="Key generator (e.g. ssh-keygen)", shape=cylinder, style=filled];
+		 KeyGen -> PrivateKey;
+		 KeyGen -> ClientPublicKey;
+		 
+	}
+
+	subgraph cluster_server {
+		 label="Server host (e.g. server in data center)";
+		 SSHServer [label="SSH server (e.g. sshd)", shape=cylinder, style=filled];
+ 		 ServerPublicKey [label="Public key", shape=tab, style=filled, fillcolor=palegreen];
+	}
+
+	SSHClient -> SSHServer [ label="SSH connection" ];
+	ServerPublicKey -> SSHServer [ style=dotted, label="uses" ];
+	PrivateKey -> SSHClient [style=dotted, label="uses"];
+	ClientPublicKey -> ServerPublicKey [style=dashed, label="copied"];
+
+}
