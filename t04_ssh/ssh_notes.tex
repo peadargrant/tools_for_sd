@@ -176,6 +176,38 @@ Run "sudo yum update" to apply all updates.
 What will actually appear will depend on what type of host you are connecting to.
 
 
+\section{File transfer}
+
+\subsection{Connecting}
+
+To connect to a remote machine to transfer files (instead of using its command line) we just replace \texttt{ssh} with \texttt{sftp} in the command:
+
+\begin{minted}{bash}
+sftp username@ip-address-or-hostname-here
+\end{minted}
+
+Login is the same as with normal SSH.
+
+When connected you'll see the \texttt{sftp>} prompt.
+
+
+\subsection{Directories}
+
+When connecting over SFTP you are dealing with \textbf{2} working directories:
+\begin{description}
+\item[Remote working directory ] on the remote server
+  \begin{itemize}
+  \item Use \texttt{pwd} to show.
+  \item Use \texttt{cd} to navigate around.
+  \end{itemize}
+\item[Local working directory] on the client computer you're using
+  \begin{itemize}
+  \item Use \texttt{lpwd} to show.
+  \item Use \texttt{lcd} to navigate around.
+  \end{itemize}
+\end{description}
+It is more confusing when the remote and local computers are using the same operating system, since the paths won't naturally differ.
+
 
 \end{document}
 
