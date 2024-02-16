@@ -95,6 +95,29 @@ Useful commands:
 - `put` to copy a file from the local machine to the remote machine
 
 
+## Simple python file
+
+1. Use the emacs editor to make a Python program that asks your name and prints hello, yourname. 
+2. Save that file as greeter.py .
+3. Run using `python3 greeter.py` .
+
+
+## Python file that can run directly
+
+0. Open `greeter.py` using emacs. 
+1. Add `#!/usr/bin/env python3` to the top of `greeter.py`.
+2. Save and exit.
+3. Run `chmod +x greeter.py` to switch on the execute bit (flag) on the file.
+4. Run your program as `./greeter.py`.
+
+
+# Running own python file
+
+1. Find a non-trivial Python program you wrote in another module.
+2. Use SFTP (put) to transfer the file from your PC to your linux server.
+3. Try to run the file with `python3 filename.py`. 
+
+
 
 dos2unix
 
