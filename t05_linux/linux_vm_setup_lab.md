@@ -115,7 +115,24 @@ Useful commands:
 
 1. Find a non-trivial Python program you wrote in another module.
 2. Use SFTP (put) to transfer the file from your PC to your linux server.
+	- May need to re-start SFTP connection if it was idle too long!
 3. Try to run the file with `python3 filename.py`. 
+
+
+# Git repository
+
+1. Clone your GitLab `tools_for_sd_labs` repository to the server using:
+	- `git clone https://url/from/git/lab` 
+2. cd into `tools_for_sd_labs`.
+3. create lab05 folder using `mkdir lab05`.
+4. cd into `lab05`.
+5. Move `test.txt` to `lab05` folder:
+	- `mv ../../test.txt .` 
+6. Same for `greeter.py`.
+7. Same for file you uploaded. 
+8. Add, commit and push those files to git.
+
+
 
 
 
