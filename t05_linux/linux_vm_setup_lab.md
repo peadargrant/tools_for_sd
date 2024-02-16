@@ -30,14 +30,14 @@
 2. Enter (leave at UTF-8).
 3. Enter again (leave at Guess Optimal).
 4. Choose Terminus Bold with arrow keys, Enter.
-5. Choose 8x24, Enter.
+5. Choose 12x24, Enter.
 
 
 ## Connecting over SSH
 
 1. Use `ip a` to show IP information.
 2. On eth0 interface note the value of inet (look like 10.1.1.20)
-3. Open Windows PowerShell and type `administrator@ipaddress`. 
+3. Open Windows PowerShell and type `ssh administrator@ipaddress`. 
 4. Log in as `administrator` and password as set. 
 5. Note that this session (and any others) is distinct from the console session. 
 
@@ -64,8 +64,37 @@
 6. Exit emacs using Ctrl-X Ctrl-C. 
 
 
+## Transferring files
 
-sftp
+We can use sftp to transfer files between our local and remote machines.
+SFTP uses the same underlying mechanisms as SSH.
+
+1. Open a new PowerShell window.
+2. Type `sftp administrator@ipaddress` and press enter.
+3. Enter your password.
+4. You'll now be connected over sftp.
+
+When working over SFTP you are dealing with **2** directories:
+
+- The local working directory on your local PC.
+- The remote working directory on the remote machine.
+
+Useful commands:
+
+- `pwd` to show the *remote* working directory path
+- `lpwd` to show the *local* working directory path
+- `ls` to list the *remote* directory
+- `lls` to list the *local* directory
+- `cd` to change *remote* directory
+- `lcd` to change *local* directory
+- `rename` to rename a file on the *remote* machine
+- `mkdir` to make a folder on the *remote* machine
+- `lmkdir` to make a folder on the *local* machine
+- `rm` to delete a file on the *remote* machine
+- `get` to copy a file from the remote machine to your local machine
+- `put` to copy a file from the local machine to the remote machine
+
+
 
 dos2unix
 
