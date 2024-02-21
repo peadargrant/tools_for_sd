@@ -6,10 +6,26 @@
 
 \maketitle
 
+\section{SSH authentication}
+
+Available methods:
+\begin{description}
+\item[Password] typed on demand (as you've used so far).
+\item[Key pair] using cryptographic key files (today's focus!)
+  \begin{itemize}
+  \item Some hardware crypto devices use a hardware private key.
+  \end{itemize}
+\item[2-Factor Authentication] using authenticator app.
+\item[One-Time Password] from a printed list.
+\item[Kerberos / GSSAPI] to pass through credentials (advanced!)
+\end{description}
+
+Which methods are \textit{required} and \textit{sufficient} will depend on how the SSH server and the operating system on the remote host are configured!
+
 \section{Key-based authentication}
 \label{key-based-authentication}
 
-SSH key pairs are an alternative to a username/password.
+SSH key pairs are an alternative or addition to a username/password.
 They consist of:
 
 \begin{description}
@@ -22,13 +38,39 @@ shared around, even put up in public.)
 
 \autoimage{key_pair}{Key-based authentication}{ssh-key-authentication}
 
+\subsection{Motivation}
+
+Main reasons to use a public / private key pair:
+
+\begin{itemize}
+\item Avoids repetitive typing of password when logging into a host.
+\item Provides security against \textit{brute force} password attacks.
+\end{itemize}
+
+There are also some reported security downsides to SSH Key Pairs!
+
+\begin{itemize}
+\item No universal means to revoke keys if a private key is stolen.
+\end{itemize}
+
+
+\subsection{Encryption algorithms}
+
+There are a number of encryption algorithms:
+\begin{description}
+\item[RSA:] at least 4096-bits
+\item[ED25519:] highly recommended!
+\item[DSA:] not recommended anymore
+\item[ECDSA:] not recommended anymore
+\end{description}
+You don't need to worry too much about their mechanics.
+I generally choose \texttt{ed25519}.
 
 \subsection{Creating key pair (mac, linux, windows 10 onwards)}
 \label{sec:creating-key-pair-unix}
 
 Key pairs are normally and ideally created on your own local client computer.
 Key pairs only need to be generated once.
-(If you already have a key pair created, you can skip on ahead...)
 
 To create an ED25519 key pair, in Powershell/Bash type:
 
@@ -36,16 +78,17 @@ To create an ED25519 key pair, in Powershell/Bash type:
 ssh-keygen -t ed25519
 \end{verbatim}
 
-You can optionally use a passphrase to encrypt the key pair or leave it blank for easier usage.
+Just press enter for now at each prompt.
+
 
 \subsection{Default key locations}
 
-The key pair is then stored in two files in your home directory (same for Mac, Linux, Windows).
-You can find them by changing into the \texttt{.ssh} directory and listing the contents of it:
+The \textbf{key pair} is stored in \textbf{two} files (same for Mac, Linux, Windows).
+You can find them by changing into the \texttt{.ssh} direcxstory and listing the contents of it:
 
 \begin{verbatim}
 cd .ssh
-dir
+ls
 \end{verbatim}
 
 From the directory listing:
@@ -53,16 +96,14 @@ From the directory listing:
 \begin{verbatim}
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
--a----       16/10/2020     15:19           3243 id_ed25519
--a----       16/10/2020     15:19            749 id_ed25519.pub
+-a----       16/10/2020     15:19           3243 id_ed25519 <-- PRIVATE
+-a----       16/10/2020     15:19            749 id_ed25519.pub <-- public
 \end{verbatim}
 
-The public key is stored in \texttt{id\_ed25519.pub}.
-The private key is stored in \texttt{id\_ed25519}.
 
 You can of course copy these files to/from a memory stick or online storage.
 Remember though that if your private key is compromised, anybody can use it.
-Best to protect it with a passphrase!
+
 
 % \subsection{Creating key pair (windows using PuTTYGen)}
 % \label{sec:creating-key-pair-windows}
@@ -88,13 +129,55 @@ In PowerShell/Bash we can use the SSH command to connect to the SSH server on a 
 ssh student@$publicIp 
 \end{verbatim}
 
+All you will notice is that you're not asked for a password. 
 
-\subsection{Using specific key}
+\subsection{Using specific non-default key}
 
 We can force the use of a specific key using the \texttt{-i} option:
 
 \begin{minted}{bash}
 ssh -i private_key_file_name_here username@host
 \end{minted}
+
+This is useful if a key is kept on a USB stick or network device.
+
+
+\section{Encrypted private keys}
+
+You can optionally encrypt the private key file with a passphrase (aka password) when creating it.
+
+The passphrase will be needed any time the private key file is used.
+
+
+\subsection{SSH agent}
+
+The SSH agent is a program that allows a private key to be decrypted once and used a number of times while logged in.
+
+
+\section{Private key security}
+
+\begin{center}
+  \textbf{\Large Your private key is valuable!}
+\end{center}
+
+\textbf{Important points:}
+
+\begin{itemize}
+\item If an unauthorized person has your private key, they can log into any server that your public key is on.
+\item Best to protect your private key using a passphrase (where possible!)
+  \begin{itemize}
+  \item Alternatives like private key on full disk encrypted laptop ok too!
+  \end{itemize}
+\end{itemize}
+
+\subsection{Risk factors}
+
+Your private key is more at risk of compromise when the following risk factors apply:
+
+\begin{itemize}
+\item The private key file has \textbf{no passphrase} to protect it if it falls into the wrong hands.
+\item There are copies of your private key in a large number of locations.
+\item You use your private key (and passphrase) on client systems that you don't trust.
+\end{itemize}
 
 \end{document}
