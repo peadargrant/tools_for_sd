@@ -1,0 +1,160 @@
+\documentclass[slides]{pgnotes}
+
+\title{Scripting variables}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Shell Variables}\label{shell-variables}
+
+\begin{itemize}
+  
+\item
+  Variables are used to store values in a script.
+\item
+  You can use shell variables when in Bash interactively too!
+\item
+  Can be used more than once and can be reassigned a value.
+\item
+  BASH has two main types of Variables:
+  \begin{description}
+  \item[Environment variables] that contain information that the system and programs access regularly
+  \item[User-defined variables] defined by users 
+  \end{description}
+\end{itemize}
+
+
+\section{Environment Variables}\label{environment-variables}
+
+\begin{itemize}
+
+\item
+  Examples of Environment Variables include \texttt{\$HOME, \$HOSTNAME, \$PWD, \$SHELL}
+\item
+  To view the available Environment Variables, use the \texttt{printenv} command
+\item
+  To view environment variable value, use \texttt{echo} (which outputs to screen):\\
+  \texttt{echo \$HOSTNAME}
+\item
+  You can also use the \texttt{set} and \texttt{env} commands to view the environment variables and their values
+\end{itemize}
+
+\section{PATH Environment Variable}\label{path-environment-variable}
+
+\begin{itemize}
+
+\item
+  The PATH variable is one of the most important variables in the BASH shell
+\item
+  Allows users to execute commands by typing the command name alone
+\item
+  If a command is located within a directory that is listed in the PATH variable,
+  You can type the name of the command on the command line to execute it
+\item
+  To view contents of PATH variable:
+  \begin{itemize}
+  \item
+    Interactively: \texttt{\$PATH }
+  \item
+    Or in script \texttt{echo \$PATH}
+  \end{itemize}
+\end{itemize}
+
+\section{User Defined Variables}\label{user-defined-variables}
+
+\begin{itemize}
+\item
+  Variable Names are important and should reflect the name of the value where possible.
+\item
+  No need to declare a variable, just assign a value to it (same as Python)
+\item
+  To assign a value to a variable use the =equal sign:\\
+  \mintinline{bash}{college=dkit}
+\item
+  Here we have created a \textbf{variable} called \textbf{college} and assigned (\textbf{=)}) the value \textbf{dkit} to it
+\item
+  To use a variable value, use the \$ sign in front of the variable:\\
+  \mintinline{bash}{echo ``The college name is'' \$college}
+\end{itemize}
+
+\subsection{Variable names}
+\begin{itemize}
+\item
+  Variables can contain alphanumeric characters, the dash character, or the underscore character.
+\item
+  They must not start with a number.
+\item
+  Better not to use UPPERCASE.
+\item
+  Decide on appropriate naming convention i.e. surName or firstName or fname and stick with this convention.
+\item To display the values of the  variables, put the \textbf{\$} sign infront of the variable.
+\end{itemize}
+
+\inputminted{bash}{usage.sh}
+
+
+\subsection{Assigning Values to Variables}\label{assigning-values-to-variables}
+
+3 ways to do this:
+
+\begin{description}
+\item[Direct assignment] (like we just saw i.e. college=dkit)
+\item[User Input] Prompt similar to \texttt{input}
+\item[Positional Parameters] (arguments)
+\end{description}
+
+
+\section{User Input}\label{user-input}
+
+\begin{itemize}
+
+\item
+  Shell scripts may require input from a user.
+\item This input can be stored in a variable to be used later.
+\item The \texttt{read} command is used to take input from standard input and place it in a variable.
+\end{itemize}
+
+\inputminted{bash}{read_example.sh}
+
+
+\section{Positional Parameters (Arguments)}\label{positional-parameters-arguments}
+
+\begin{itemize}
+
+\item
+  When we want to \emph{specify values on the command line} , we use
+  \textbf{positional parameters or arguments} .
+\item
+  Positional Parameters are a series of \emph{special variables
+  (\$0\ldots{}\$9) } that contain the contents of the values specified
+  on the command line.
+\item
+  So for example if you want to read in the first name and second name
+  of a person, \emph{you would pass the values while running the
+  script.}
+\item
+  So if we write a script to echo greetings to a user and we want to
+  pass the values for the user at run time, we replace the variable
+  value with \texttt{\$1, \$2,} etc i.e.
+\item
+  \emph{echo ``Welcome'' \$1 \$2}
+\item
+  Then run the script and pass the values for \$1 and \$2 when running
+  the script.
+\item
+  \emph{./script.sh } \emph{liz} \_ \_ \emph{frances} \_ \_
+\end{itemize}
+
+\section{Echo}\label{echo}
+
+The echo command is used to add descriptions and spaces to script output:
+
+\begin{minted}{bash}
+college=dkit
+echo "the college name is $college
+\end{minted}
+
+\end{document}

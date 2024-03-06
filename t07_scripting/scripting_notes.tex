@@ -1,0 +1,137 @@
+\documentclass[slides]{pgnotes}
+
+\title{Scripting}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{What is Scripting?}\label{what-is-scripting}
+
+In CLI environments commands are used to carry out tasks (get-process, ls, mkdir, etc):
+\begin{itemize}
+\item These commands may be executed individually
+\item May be combined using pipelining and redirection.
+\end{itemize}
+\begin{center}
+  \textbf{Scripting adds familiar programming constructs to the command-line environment.}
+\end{center}
+\begin{itemize}
+\item May need  to execute a number of commands together as a single unit.
+\item Commands can be saved to a file - called a script.
+\item Used to automate repetitive tasks.
+\end{itemize}
+  
+
+
+
+\section{Scripting concepts}
+
+\begin{itemize}
+\item
+  A script contains a number of commands that will be executed in the  order they are presented in.
+\item
+  Scripts are interpreted, line by line, as the script is run by the interpreter.
+\item
+  Error in scripts may result in scripts failing or making unexpected changes.
+\end{itemize}
+
+\section{Shells}
+
+\begin{itemize}
+\item
+  Particular installation may have a number of different shells:
+  \begin{description}
+  \item[Windows:] CMD, PowerShell
+  \item[Linux:] Bash, zsh, C-shell, ksh
+  \item[Mac:] zsh, Bash
+  \end{description}
+\item
+  Use cat /etc/shells to view the available shells    
+\item
+  Scripts are written for a particular shell (BASH, c shell, etc)
+  \begin{itemize}
+  \item
+    First line of a script should identify the shell the script runs  on.
+  \end{itemize}
+\end{itemize}
+
+\section{Bash}
+
+\begin{itemize}
+\item
+  The default shell for Ubuntu is BASH.
+\item
+  Scripts should be saved with a .sh extension
+\item
+  Some text editors in Linux recognise scripts and format the text  accordingly.
+\end{itemize}
+
+\section{Facilities}\label{script-contents}
+
+Scripts contain all the usual programming components:
+
+\begin{itemize}
+\item
+  Variables
+\item
+  Input (from keyboard and via arguments)
+\item
+  Output (using echo)
+\item
+  Control Flow (looping -- for, while, case, etc)
+\item
+  Conditional Statements (if, ifelse, etc)
+\item
+  Functions
+\end{itemize}
+
+\section{Structure of a Script}\label{structure-of-a-script}
+
+A script should follow the basic structure:
+
+\inputminted{bash}{structure.sh}
+
+\section{File Permissions}\label{file-permissions}
+
+Knowledge of File Permission is essential for running scripts:
+
+\begin{itemize}
+\item
+  By default, files cannot be executed.
+\item
+  Not even root can execute a file unless the file owner adds execute permission manually.
+  \begin{itemize}
+  \item
+    This is a security feature.
+  \end{itemize}
+\item
+  Use chmod and symbolic or numeric notation to change permissions:
+  \begin{itemize}
+  \item
+    \texttt{chmod a+x filename}
+  \item
+    \texttt{chmod 777 filename}
+  \end{itemize}
+\end{itemize}
+
+\section{Creating a Shell Script}\label{creating-a-shell-script}
+
+\begin{enumerate}
+\item Create a file using an editor
+\item Start with header to specify interpreter:
+  \begin{itemize}
+  \item Normally \mintinline{latex}{#!/bin/bash}
+  \end{itemize}
+\item Good idea to have comment lines with purpose and your name
+\item Then commands (and scripting constructs) follow.
+\item Save the file with the .sh extension
+\item Change permissions on file to execute it e.g. \mintinline{bash}{chmod +x ./myscript.sh}.
+\item Run the file e.g. \mintinline{bash}{./myscript.sh} 
+\end{enumerate}
+
+
+\end{document}
+
