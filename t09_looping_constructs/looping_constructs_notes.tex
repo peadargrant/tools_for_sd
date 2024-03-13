@@ -1,0 +1,86 @@
+\documentclass[slides]{pgnotes}
+
+\title{Looping constructs}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+\section{Loop Constructs}\label{loop-constructs}
+
+Loop Constructs in a script are used when you want to repeat a command/s a number of times.
+
+There are two main loop constructs in BASH shell:
+\begin{itemize}
+\item for
+\item while
+\end{itemize}
+
+
+\section{for Construct}\label{for-construct}
+
+The \texttt{for} construct is similar to that in Python:
+\begin{itemize}
+\item It operates on a list of strings
+\item Can be used with files, directories, users, groups, numerical sequences etc.
+\end{itemize}
+Process:
+\begin{enumerate}
+\item When \texttt{for} Construct entered:
+  \begin{enumerate}
+  \item creates a \emph{variable} (newDir in the previous example)
+  \item \emph{sets its value to the first string} (dept1)
+  \end{enumerate}
+\item executes all commands between \emph{do} and \emph{done}  
+\item  The next time the loop is run, the variable newDir takes the value of the second string.
+\item This process continues until all strings are processed.  
+\end{enumerate}
+
+Example Task: Create three directories named dept1, dept2 and dept3
+using a for Construct.
+
+\begin{figure}
+\centering
+\includegraphics{img/for0.png}
+\caption{}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{img/for1.png}
+\caption{}
+\end{figure}
+
+
+\section{While Construct}\label{while-construct}
+
+A while construct is a type of loop that completes commands as long as
+the tested condition is true (exist status code 0).
+
+It is a useful construct to use when you want to read in content from a
+text file and continue to do so until you reach the end of the file.
+
+System Administrators use this construct a lot. It can be used with
+files, directories, users, groups, etc.
+
+Syntax is as follows:
+
+Example Task: Use a While loop to read content from a text file:
+
+\begin{figure}
+\centering
+\includegraphics{img/for2.png}
+\caption{}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{img/for3.png}
+\caption{}
+\end{figure}
+
+\end{document}
+
