@@ -22,6 +22,7 @@ Execute the following commands in order (you will have to discover / look up the
 2. Print a 1-line description of the operating system version. 
 3. Print out the disk usage of the machine in human-readable form (MB, GB etc).
 4. List out the users currently logged in to the system
+5. Print out the IP configuration
 
 Make the appropriate changes so that you can run your script from Bash as `status_update.sh`. 
 
