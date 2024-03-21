@@ -7,6 +7,17 @@
 
 [Lecture notes on Make (Warwick University)](https://warwick.ac.uk/research/rtp/sc/rse/training/make/Makefiles.pdf)
 
+## Sample rule
+
+	help.docx: help.md
+        pandoc -o $@ $^
+
+
+## Automatic variables
+
+	$@ = name of the target file 
+	$^ = all of the dependency files
+	$< = the **first** dependency listed
 
 
 
@@ -36,7 +47,7 @@ We have a program `my_program.py` and a description of its usage `help.md` in Ma
 Our lecturer has asked us to submit also a copy of its output when run in the file `output.txt`.
 The files are required in a zip named `ca1.zip`. 
 
-1. Draw out a diagram on paper of the *dependencies* in the above scenario. 
+1. Draw out a diagram on paper of the *dependencies* in the above scenario.  Make a sample `my_program.py` that just prints something to the screen.  Also make a sample `help.md` file that has some Markdown text in it. 
 2. Ensure that the `make`, `pandoc` and `pygmentize` commands are installed. 
 3. Create a new `Makefile` using `emacs`.
 4. Create a new target for `ca1.zip` with `my_program.py` and `help.md` as *dependencies*.
@@ -46,7 +57,7 @@ The files are required in a zip named `ca1.zip`.
 8. Add in a target for `output.txt` using shell redireciton based on the `my_program.py` file.
 9. Test your Makefile using `make`. Do you now see `output.txt`?
 12. Use a `.SECONDARY:` line to prevent `make` removing the *transitive dependency* `output.txt`. 
-11. The lecturer has now asked us to convert the `help.md` file to HTML and submit that as well. Make the appropriate changes to your `Makefile`.
+11. The lecturer has now asked us to convert the `help.md` file to DOCX and submit that as well. Make the appropriate changes to your `Makefile`.
 12. Test using `make -B` what happens if a re-build is forced. Does the order of the commands look correct?
 13. What happens if you instead use `make -Bn`?  Look up the online help to see what the `-n` option does if you're not sure.
 
