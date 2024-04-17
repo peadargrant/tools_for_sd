@@ -1,0 +1,23 @@
+digraph G {
+
+	subgraph cluster_gitlab {
+		 label = "gitlab.comp.dkit.ie";
+		 subgraph cluster_repository {
+		 label = "repository";
+		 pipeline [label="Pipeline\n.gitlab-ci.yml"];
+		 }
+	}
+
+	subgraph cluster_xoa {
+
+	runner [label="Runner"];
+
+	runner -> repository;
+
+	executor [label="Executor (bash)"];
+
+	runner -> executor;
+
+	}
+
+}

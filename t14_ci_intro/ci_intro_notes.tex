@@ -1,0 +1,200 @@
+\documentclass[slides]{pgnotes}
+
+\title{Continuous integration}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Continuous integration}
+
+Continuous integration technically refers to merging changes back into the main branch as often as possible:
+
+\begin{itemize}
+\item Idea originated to combine work of developers in teams.
+\item Key idea (even for a solo developer) is that code is compiled, tested, packaged and deployed automatically on every commit.
+\end{itemize}
+
+Practical usage depends on:
+\begin{description}
+\item[Source control] system to record changes and trigger actions.
+\item[CI toolset] to automate the process
+\end{description}
+
+\subsection{CI in software development}
+
+CI can be used to automate any task, typically:
+
+\begin{itemize}
+\item Confirming that code compiles correctly without errors (for compiled languages)
+\item Running automated tests.
+\item Packaging code or executables into ZIP or other distribution formats (e.g. apk, pkg, MSI installers).
+\item Generating other artefacts like screenshots, documentation, web pages etc.
+\item Installing code on test (or production!) environments.
+\item Announcing updated status using email, Slack, Teams, IRC, Twitter.
+\item Updating metrics, dashboards, team visualisations etc. 
+\end{itemize}
+
+
+\subsection{CI for data science}
+
+Some specific ideas for data science:
+
+\begin{enumerate}
+\item All of the previous ideas from software!
+\item Converting markdown to different formats.
+\item Generating visualisations using Python from input data.
+\item Compiling a LaTeX document to PDF.
+\item Data science lecturer creates course plan from topic folders.
+\end{enumerate}
+
+
+\subsection{Basic idea}
+
+Regardless of how we perform our CI, the basic steps remain the same.
+The CI tool should:
+
+\begin{enumerate}
+\item Cleanly clone the repository in full.
+\item Run the steps specified.
+\item Report the outcome of the steps.
+\item Save / upload artefacts created.
+\end{enumerate}
+
+Reporting and saving can be done either by the CI tool itself or scripts in the repository.
+
+
+\subsection{Requirements}
+
+For any CI to work:
+
+\begin{center}
+\textbf{We must be able to run the build step as a sequence of deterministic commands, ideally a single command.}
+\end{center}
+
+How this works does not matter, but typically:
+
+\begin{enumerate}
+\item Makefile based on targets / dependencies using \texttt{make}.
+\item Script in bash, PowerShell, Python, other language.
+\end{enumerate}
+
+Unless you can repeatably run your build steps without intervention, you won't be able to run them successfully under CI.
+
+
+\subsection{Artefacts}
+
+Normally we want to save some (not all) files generated during the build process.
+
+\begin{itemize}
+\item Reporting data about testing, performance, sample output etc.
+\item Files intended for distribution:
+  \begin{itemize}
+  \item HTML or PDF from a markdown file
+  \item Image output from a Python program on a CSV.
+  \item MSI installer from source code for Windows
+  \item APK app for an android mobile phone
+  \end{itemize}
+\end{itemize}
+
+\subsection{CI tooling}
+
+There are 3 options:
+
+\begin{enumerate}
+
+\item \textbf{Roll your own} using git, git hooks and bash / python scripts.
+
+\item \textbf{Standalone CI server} like Jenkins, Travis.
+
+\item \textbf{Integrated CI solutions} using source control hosts like GitLab, GitHub etc. 
+
+\end{enumerate}
+
+Git mainly used with GitLab / GitHub, so integrated option now makes sense in most cases. 
+
+
+\section{GitLab CI}
+
+To automate actions on commit we need:
+
+\begin{description}
+\item[Pipeline] that defines the steps to perform
+\item[Executor] environment that will run the steps
+\item[Runner] service to orchestrate:
+  \begin{enumerate}
+  \item Creating the executor
+  \item Running the pipeline
+  \end{enumerate}
+\end{description}
+
+\autoimage{ci_environment}{CI environment}{ci-environment}
+
+
+\subsection{Pipeline}
+
+The pipeline defines the commands to execute:
+\begin{itemize}
+\item Stored as file in repository as \texttt{.gitlab-ci.yml}
+\item Pipelines vary in complexity:
+  \begin{itemize}
+  \item Simplest pipelines (as we'll use today) just run single (set of) commands when repository updated.
+  \item More complex pipelines introduce depedencies, stages, rules etc.
+  \end{itemize}
+\end{itemize}
+
+
+
+\subsection{Build machine}
+
+Runner and executor are separate to GitLab itself:
+\begin{itemize}
+\item Need to be installed on a suitable computer (here a linux virtual machine) that
+\item Should be on all the time, so can continuously communicate with GitLab.
+\item Could be a machine on the network, in the cloud etc.
+\end{itemize}
+
+We will use our XOA Linux instance(s) to host the runner and provide the executor.
+
+
+\subsection{Executor}
+
+The executor is the environment used by the runner to run the pipeline.
+Common executors:
+\begin{description}
+\item[Shell] executor uses the default system shell (e.g. bash on linux, PowerShell on Windows)
+  \begin{itemize}
+  \item Installed already so no further configuration needed.
+  \item Issue: required packages etc need to be installed.
+  \end{itemize}
+\item[Docker] executor uses the docker container system (later)
+  \begin{itemize}
+  \item Needs to be separately setup.
+  \item Advantage: build environment can be setup in repository.
+  \end{itemize}
+\end{description}
+For today we'll use the shell executor.
+
+
+\subsection{Runner}
+
+The runner needs to be installed on our XOA instance:
+\begin{itemize}
+\item The runner communicates with GitLab continuously.
+\item When new commits are pushed to the repository the runner:
+  \begin{itemize}
+  \item Invokes the pipeline using the executor
+  \item Reports progress back to GitLab for display
+  \item Captures defined artefacts and sends them to GitLab
+  \end{itemize}
+\end{itemize}
+  
+\end{description}
+
+
+
+\end{document}
+
+ 
