@@ -189,10 +189,33 @@ The runner needs to be installed on our XOA instance:
   \item Reports progress back to GitLab for display
   \item Captures defined artefacts and sends them to GitLab
   \end{itemize}
+\item The runner normally is installed as a separate Linux user specifically designated for this purpose.
 \end{itemize}
   
 \end{description}
 
+
+\section{Recommendations}
+
+\begin{itemize}
+\item You must have your build process scripted to begin with.
+\item You should use the same script(s) to build both locally and in your CI pipeline.
+\end{itemize}
+
+\section{Issues}
+
+\begin{itemize}
+\item We are really just using CI here as a trigger to run our script:
+  \begin{itemize}
+  \item We could do a lot more in terms of selective reporting if tests or other processes fail.
+  \end{itemize}
+\item Our build environment is not self-contained and is dependent on the machine hosting the runner.
+  \begin{itemize}
+  \item Ideally our build environment should be reproducible some way.
+  \item Consider container, virtualisation or automated package setup.
+  \item Could consider using the \textit{Docker} runner.
+  \end{itemize}
+\end{itemize}
 
 
 \end{document}
