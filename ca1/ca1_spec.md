@@ -17,16 +17,23 @@ You will have some class time available to work on this CA but a large amount of
 ## Task 1: GitLab setup (10%)
 
 You are required to set up a GitLab repository named exactly `tools_ca`. 
+
 You must give `grantp` developer access to this repository immediately once set up. 
 
 Modify README.md to the format shown in `README_example.md`.
 
-Create a git tag named exactly `setup` when this step is complete.
+Clone the repository to your local device. 
+
+Create a git tag named exactly `setup` when this step is complete:
+
+	git tag -a setup -m "tagged setup"
+	
+Push (including tags) using the command
+
+	git push --tags
 
 
 ## Task 2: Code import (10%)
-
-Clone the repository to your local device. 
 
 Add and commit the code `filter_report.py` (and any other Python files) and sample input files `advertising.csv`.
 
