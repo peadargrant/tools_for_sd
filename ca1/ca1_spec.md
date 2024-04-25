@@ -2,7 +2,7 @@
 
 **Weight:** 40
 
-**Deadline:** as displayed on Moodle
+**Deadline:** May 5th. 
 
 The objective of this lab is to take work you have done in the programming module (Programming for Data Analytics - Project 3) and set this up properly as a project in professional development environment.
 
