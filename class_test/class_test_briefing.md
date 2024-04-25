@@ -9,7 +9,7 @@
 
 ## Format
 
-- Approx 40 questions
+- Approx 30-40 questions
 - On Moodle
 - Multiple choice, Matching, Fill in text, True/False, etc.
 - All topics in the module are liable to be examined.
