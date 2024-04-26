@@ -6,12 +6,14 @@
 
 **Duration:** 2 hours
 
+You must be present in the classroom to take the test.
+It is not possible to take the test remotely.
 
 ## Format
 
-- Approx 30-40 questions
+- Approx 30 questions
 - On Moodle
-- Multiple choice, Matching, Fill in text, True/False, etc.
+- Multiple choice only.
 - All topics in the module are liable to be examined.
 
 Your mark in the test will be made available on Moodle after the test has closed for all participants.
